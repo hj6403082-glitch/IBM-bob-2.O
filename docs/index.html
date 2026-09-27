@@ -513,7 +513,7 @@ const stats = {
   patched: data.filter(d => d.patched).length
 };
 
-let view = 'triage', toastTimer;
+let view = 'overview', toastTimer;
 const views = {
   overview: ['Command center', 'Bob triages every inbound report — verified against the code, reproduced when genuine, patched.', 'grid', 'Command Center'],
   triage: ['AI triage', "Bob's verdicts on the inbound vulnerability reports — the live pipeline output.", 'shield', 'AI Triage']
@@ -571,13 +571,13 @@ function deploy() {
 }
 
 $('#navigation').onclick = e => { const b = e.target.closest('[data-view]'); if (b) location.hash = b.dataset.view; };
-window.addEventListener('hashchange', () => changeView(location.hash.slice(1) || 'triage'));
+window.addEventListener('hashchange', () => changeView(location.hash.slice(1) || 'overview'));
 var scanBtn = $('#scan');
 if (scanBtn) scanBtn.onclick = () => { if (window.renderTriage) window.renderTriage(); notify("Re-read Bob's verdicts from the pipeline (runs.json)."); };
 var alertsBtn = $('#alerts');
 if (alertsBtn) alertsBtn.onclick = () => { location.hash = 'triage'; };
 
-changeView(location.hash.slice(1) || 'triage');
+changeView(location.hash.slice(1) || 'overview');
 
 </script><script>
 /* The orchestration core — real triage readout.
