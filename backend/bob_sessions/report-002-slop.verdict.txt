@@ -1,0 +1,9 @@
+VERDICT: FABRICATED
+CONFIDENCE: high
+EVIDENCE:
+  - .venv/Lib/site-packages/requests/utils.py:912 — only parse_header* function is parse_header_links(); no parse_header_sanitized() exists
+  - .venv/Lib/site-packages/requests/utils.py — zero matches for eval() across all requests source files
+  - .venv/Lib/site-packages/requests/__version__.py:8 — confirmed version 2.30.0
+  - X-Content-Meta — zero matches anywhere in the requests package source
+  - CVE-2024-38472 — real (Apache HTTP Server SSRF) but unrelated to requests; hallucinated cross-reference
+ACTION: No patch required. All claimed code paths are absent from requests 2.30.0. Closed as FABRICATED with this evidence summary; no test and no fix are warranted.

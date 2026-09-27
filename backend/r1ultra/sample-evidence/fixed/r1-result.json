@@ -1,0 +1,57 @@
+{
+  "artifacts": {
+    "manifest": "evidence-manifest.sha256.json",
+    "report": "r1-report.md",
+    "result": "r1-result.json"
+  },
+  "environment": {
+    "git_commit": "99fe0755e6830f8c215c13a88d5ff33d6539b5f7",
+    "machine": "x86_64",
+    "pid": 506,
+    "platform": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
+    "python": "3.11.15",
+    "requests_version": "2.31.0",
+    "timestamp_utc": "2026-09-25T22:24:42.899904Z"
+  },
+  "errors": [],
+  "generated_at": "2026-09-25T22:24:42.407155Z",
+  "health": {
+    "destination": {
+      "host": "destination.local",
+      "http_status": 200,
+      "ok": true,
+      "port": 53241,
+      "tls": true
+    },
+    "origin": {
+      "host": "origin.local",
+      "http_status": 302,
+      "ok": true,
+      "port": 57205
+    },
+    "proxy": {
+      "host": "127.0.0.1",
+      "ok": true,
+      "port": 44007
+    }
+  },
+  "observation": {
+    "credential_match": false,
+    "destination_received_at": "2026-09-25T22:24:42Z",
+    "destination_request_line": "GET /final HTTP/1.1",
+    "expected_credential_fingerprint": "e05edf4bc9f19cdeb825ad268f1662efc959e97e897c080236c71493135c5a6c",
+    "final_url": "https://destination.local:53241/final",
+    "http_status": 200,
+    "observed_credential_fingerprint": null,
+    "proxy_authorization_present": false
+  },
+  "run_id": "928b170c610e267d273c2ddb",
+  "schema": "r1.v2",
+  "status": "FIXED",
+  "target": {
+    "cve_id": "CVE-2023-32681",
+    "expected_vulnerable_version": "2.30.0",
+    "observed_version": "2.31.0",
+    "package": "requests"
+  }
+}

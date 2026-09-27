@@ -1,0 +1,13 @@
+# Builds the patched comparison image on top of the vulnerable image, so the
+# two only differ by the Requests version. BASE_IMAGE is parametrized because
+# run_full_validation.py / run_matrix.py let the vulnerable image be renamed
+# via --vulnerable-image; a hardcoded FROM here would silently point at the
+# wrong (or a stale/missing) image if that flag is ever used.
+ARG BASE_IMAGE=patchwarden-r1:latest
+FROM ${BASE_IMAGE}
+
+USER root
+
+RUN python -m pip install --no-cache-dir requests==2.31.0
+
+USER patchwarden

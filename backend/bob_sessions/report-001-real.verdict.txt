@@ -1,0 +1,9 @@
+VERDICT: CONFIRMED
+CONFIDENCE: high
+EVIDENCE:
+  - requests/sessions.py:327 — root cause: Proxy-Authorization re-attached without an https-scheme guard
+  - requests/sessions.py:245 — rebuild_proxies() is called on every redirect iteration inside resolve_redirects()
+  - requests/__version__.py:8 — confirmed installed version 2.30.0
+  - sandbox/rig.py:10-15 — documents the exact vulnerable line and the 2.31.0 fix
+  - sandbox/test_proxy_auth_leak.py:38-58 — pre-existing reproduction test (asserts the insecure outcome; passes on unpatched 2.30.0)
+ACTION: Patch applied to sessions.py:327 (one-line https-scheme guard added). Regression test written to sandbox/test_proxy_auth_no_leak_regression.py (asserts the secure outcome; passes on patched code, fails on 2.30.0). Full suite: 25 passed, 1 skipped, 0 broken. Awaiting maintainer review — do not merge without human sign-off.

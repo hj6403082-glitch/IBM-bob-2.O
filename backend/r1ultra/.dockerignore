@@ -1,0 +1,10 @@
+.git
+__pycache__/
+.pytest_cache/
+artifacts/
+artifacts-vulnerable/
+artifacts-fixed/
+.matrix-venv-*/
+*.py[cod]
+*.pyo
+*.zip

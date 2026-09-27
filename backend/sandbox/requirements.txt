@@ -1,0 +1,5 @@
+# Reproduction rig for CVE-2023-32681.
+# Pin the vulnerable version so the reproduction test goes GREEN.
+# Bump to 2.31.0 (or later) to watch the same test go RED -- proof the fix works.
+requests==2.30.0
+pytest>=7,<9

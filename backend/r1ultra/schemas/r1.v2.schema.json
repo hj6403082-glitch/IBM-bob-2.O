@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PatchWarden R1 v2 result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema",
+    "run_id",
+    "generated_at",
+    "status",
+    "target",
+    "environment",
+    "health",
+    "observation",
+    "errors",
+    "artifacts"
+  ],
+  "properties": {
+    "schema": {
+      "const": "r1.v2"
+    },
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generated_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "status": {
+      "enum": [
+        "CONFIRMED_VULNERABLE",
+        "FIXED",
+        "UNEXPECTED_FAILURE"
+      ]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "cve_id",
+        "package",
+        "expected_vulnerable_version",
+        "observed_version"
+      ],
+      "properties": {
+        "cve_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "package": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_vulnerable_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observed_version": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "environment": {
+      "type": "object"
+    },
+    "health": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object"
+      }
+    },
+    "observation": {
+      "type": "object"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "required": [
+        "result",
+        "report",
+        "manifest"
+      ],
+      "properties": {
+        "result": {
+          "type": "string"
+        },
+        "report": {
+          "type": "string"
+        },
+        "manifest": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

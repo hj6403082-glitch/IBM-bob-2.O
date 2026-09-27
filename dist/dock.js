@@ -1,0 +1,14 @@
+const dock=$('.sidebar');dock.classList.add('dock');dock.setAttribute('aria-label','Floating navigation dock');
+const topbar=$('.topbar'),brand=$('.brand');topbar.prepend(brand);const avatar=$('.avatar');if(avatar){avatar.setAttribute('aria-label','Jordan Kim, demo administrator');topbar.append(avatar)}
+const dockOrb=document.createElement('button');dockOrb.className='dock-orb';dockOrb.setAttribute('aria-label','Open connected triage workspace');dockOrb.innerHTML=icon('shield')+'<span class="dock-hint">Open Warden triage</span>';dock.prepend(dockOrb);dockOrb.onclick=()=>location.hash='scan';
+const dockDivider=document.createElement('span');dockDivider.className='dock-divider';dockDivider.setAttribute('aria-hidden','true');dockOrb.after(dockDivider);
+const dockStatus=document.createElement('button');dockStatus.className='dock-status';dockStatus.innerHTML='<i></i>';dockStatus.setAttribute('aria-label','Refresh backend connection');dockStatus.title='Local pipeline connection';dock.append(dockStatus);dockStatus.onclick=()=>loadTriage();
+const dockNames={overview:'Fleet',scan:'Triage',deployments:'Rollouts',reports:'Reports',settings:'Settings'};
+const beforeDockNav=nav;nav=function(){beforeDockNav();document.querySelectorAll('#navigation [data-view]').forEach(button=>{const label=document.createElement('span');label.className='dock-label';label.textContent=dockNames[button.dataset.view];button.append(label);button.setAttribute('aria-label',views[button.dataset.view][3]);button.title=views[button.dataset.view][3]})};nav();
+const beforeDockBackend=setBackendStatus;setBackendStatus=function(){beforeDockBackend();dockStatus.dataset.state=triageState.health?'connected':'offline';dockStatus.title=triageState.health?'Local triage pipeline connected · Click to refresh':'Backend unavailable · Click to reconnect';dockStatus.setAttribute('aria-label',dockStatus.title)};setBackendStatus();
+const beforeDockTriage=renderTriage;renderTriage=function(){beforeDockTriage();dockStatus.dataset.state=triageState.busy?'busy':triageState.health?'connected':'offline'};
+window.addEventListener('hashchange',()=>window.scrollTo({top:0,behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'}));
+function dockNavigate(destination){changeView(destination);try{history.pushState(null,'','#'+destination)}catch{}window.scrollTo({top:0,behavior:'instant'});startCore()}
+$('#navigation').onclick=e=>{const button=e.target.closest('[data-view]');if(button)dockNavigate(button.dataset.view)};
+dockOrb.onclick=()=>dockNavigate('scan');$('#open-triage').onclick=()=>dockNavigate('scan');$('#all-deployments').onclick=()=>dockNavigate('deployments');brand.onclick=e=>{e.preventDefault();dockNavigate('overview')};
+window.addEventListener('popstate',()=>changeView(location.hash.slice(1)||'scan'));

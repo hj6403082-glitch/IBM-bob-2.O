@@ -1,0 +1,16 @@
+{
+  "algorithm": "SHA-256",
+  "files": [
+    {
+      "bytes": 926,
+      "path": "r1-report.md",
+      "sha256": "a372bc78e8bd8b545ebee207342729f25998568b30377f6340045c5bf249dc13"
+    },
+    {
+      "bytes": 1545,
+      "path": "r1-result.json",
+      "sha256": "623231697d5d15ccdab37b67f42d59042ffdb9490b49cca99089312fe0219707"
+    }
+  ],
+  "generated_at": "2026-09-25T22:24:42.905394Z"
+}

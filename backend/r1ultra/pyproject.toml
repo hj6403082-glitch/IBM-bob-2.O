@@ -1,0 +1,9 @@
+[project]
+name = "patchwarden-r1-ultra"
+version = "3.1.0"
+requires-python = ">=3.11,<3.12"
+dependencies = ["requests==2.30.0"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
